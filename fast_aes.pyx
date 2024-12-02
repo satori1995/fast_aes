@@ -159,6 +159,8 @@ cdef class FastAES:
         """
         对 content 进行解密
         """
+        if len(content) == 0:
+            raise DecryptionError(content)
         # plain：明文，encrypted：密文
         cdef Buffer plain, encrypted, base64
         encrypted.content = <unsigned char *> content
